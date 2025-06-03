@@ -19,3 +19,7 @@ const favoriteSlice = createSlice({
 });
 
 export const favoriteReducer = favoriteSlice.reducer;
+
+export const { addFavorite, deleteFavorite } = favoriteSlice.actions;
+
+export const selectFavoriteList = (state) => state.favorite.favoriteCampersList;

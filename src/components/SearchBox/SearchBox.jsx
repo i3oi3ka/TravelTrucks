@@ -1,28 +1,26 @@
-import { useDispatch } from "react-redux";
-import { changeFilters } from "../../redux/filtersSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { changeFilters, selectFilters } from "../../redux/filtersSlice";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 
 const SearchBox = () => {
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
+  const filters = useSelector(selectFilters);
+  console.log(filters);
 
-  console.log("searchParams >>>", searchParams);
   useEffect(() => {
-    if (searchParams.size > 0) {
-      console.log("equipment:", searchParams.get("equipment")?.split(","));
-
-      dispatch(
-        changeFilters({
-          location: searchParams.get("location") || "",
-          type: searchParams.get("type") || "",
-          transmission: searchParams.get("transmission") || "",
-          equipment: searchParams.get("equipment")
-            ? searchParams.get("equipment")?.split(",")
-            : [],
-        })
-      );
-    }
+    console.log("jkfhgjkhdfjkgjkdf");
+    dispatch(
+      changeFilters({
+        location: searchParams.get("location") || "",
+        type: searchParams.get("type") || "",
+        transmission: searchParams.get("transmission") || "",
+        equipment: searchParams.get("equipment")
+          ? searchParams.get("equipment")?.split(",")
+          : [],
+      })
+    );
   }, [dispatch, searchParams]);
 
   const handleSubmit = (event) => {
@@ -32,7 +30,7 @@ const SearchBox = () => {
 
     // Collect all checked equipment checkboxes
     const equipment = [];
-    ["AC", "kitchen", "tv", "bathroom"].forEach((name) => {
+    ["AC", "kitchen", "TV", "bathroom"].forEach((name) => {
       if (elements[name] && elements[name].checked) {
         equipment.push(name);
       }
@@ -63,12 +61,13 @@ const SearchBox = () => {
 
         <fieldset>
           <legend>Vehicle equipment</legend>
+
           <label>
             ac
             <input
               type="checkbox"
               name="AC"
-              defaultChecked={searchParams.get("equipment")?.includes("ac")}
+              defaultChecked={searchParams.get("equipment")?.includes("AC")}
             />
           </label>
           <label>

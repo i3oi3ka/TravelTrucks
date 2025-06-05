@@ -5,12 +5,11 @@ import {
   selectFavoriteList,
 } from "../../redux/favoriteSlice";
 import Categories from "../Categories/Categories";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Camper = ({ camper }) => {
   const dispatch = useDispatch();
   const favoriteList = useSelector(selectFavoriteList);
-  const navigate = useNavigate();
   const location = useLocation();
   const handleAddFavoriteBtn = (id) => {
     dispatch(addFavorite(id));
@@ -51,7 +50,7 @@ const Camper = ({ camper }) => {
           <p>{camper.description}</p>
         </div>
         <Categories camper={camper} />
-        <Link to="{camper.id}" state={location}>
+        <Link to={camper.id} state={location}>
           Show more
         </Link>
       </div>

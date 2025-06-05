@@ -5,17 +5,18 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
+  persistStore,
 } from "redux-persist";
 import { configureStore } from "@reduxjs/toolkit";
 import { campersReducer } from "./campers/campersSlice";
 import { filtersReducer } from "./filtersSlice";
-import { favoriteReducer } from "./favoriteSlice";
+import { persistedFavoriteReducer } from "./favoriteSlice";
 
 export const store = configureStore({
   reducer: {
     campers: campersReducer,
     filters: filtersReducer,
-    favorite: favoriteReducer,
+    favorite: persistedFavoriteReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -24,3 +25,5 @@ export const store = configureStore({
       },
     }),
 });
+
+export const persistor = persistStore(store);

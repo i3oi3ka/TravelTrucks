@@ -1,12 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { fetchCampersThunk } from "./campersOps";
+import { selectFilters } from "../filtersSlice";
 
 const handlePending = (state) => {
   state.isLoading = true;
   state.error = null;
 };
 
-const hanleRejected = (state, { payload }) => {
+const handleRejected = (state, { payload }) => {
   state.isLoading = false;
   state.error = payload;
 };
@@ -29,12 +30,44 @@ const campersSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchCampersThunk.pending, handlePending)
-      .addCase(fetchCampersThunk.rejected, hanleRejected),
+      .addCase(fetchCampersThunk.rejected, handleRejected),
 });
 
 export const campersReducer = campersSlice.reducer;
 
 export const selectCampers = (state) => state.campers.items;
+
+export const selectFilteredCampers = createSelector(
+  [selectFilters, selectCampers],
+  ({ location, type, transmission, equipment }, campers) => {
+    let filteredCampers = campers;
+
+    if (location) {
+      filteredCampers = filteredCampers.filter((camper) =>
+        camper.location.toLowerCase().includes(location.toLowerCase())
+      );
+    }
+    if (type) {
+      filteredCampers = filteredCampers.filter(
+        (camper) => camper.form === type
+      );
+    }
+    if (transmission) {
+      filteredCampers = filteredCampers.filter(
+        (camper) => camper.transmission === transmission
+      );
+    }
+    if (equipment) {
+      filteredCampers = filteredCampers.filter((camper) =>
+        equipment.every((equip) => camper[equip])
+      );
+    }
+
+    console.log(filteredCampers);
+
+    return filteredCampers;
+  }
+);
 
 export const selectIsLoading = (state) => state.campers.isLoading;
 

@@ -1,6 +1,22 @@
 import { nanoid } from "@reduxjs/toolkit";
 
-const Categories = ({ transmission, engine, categories }) => {
+const categoriesList = [
+  "AC",
+  "bathroom",
+  "kitchen",
+  "TV",
+  "radio",
+  "refregirator",
+  "microwave",
+  "gas",
+  "water",
+];
+
+const Categories = ({ camper }) => {
+  const transmission = camper.transmission;
+  const engine = camper.engine;
+  const categories = categoriesList.filter((category) => camper[category]);
+
   return (
     <ul>
       <li>{transmission}</li>

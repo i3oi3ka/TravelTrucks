@@ -3,22 +3,21 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   location: "",
   type: "",
-  equipment: {
-    ac: false,
-    automatic: false,
-    kitchen: false,
-    tv: false,
-    bathroom: false,
-  },
+  transmission: "",
+  equipment: [],
 };
 const filtersSlice = createSlice({
   name: "filters",
   initialState,
   reducers: {
     changeFilters: (state, { payload }) => {
-      state = payload;
+      return payload;
     },
   },
 });
 
 export const filtersReducer = filtersSlice.reducer;
+
+export const { changeFilters } = filtersSlice.actions;
+
+export const selectFilters = (state) => state.filters;

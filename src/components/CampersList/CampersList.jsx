@@ -1,14 +1,14 @@
 import { useSelector } from "react-redux";
 import {
-  selectCampers,
   selectError,
+  selectFilteredCampers,
   selectIsLoading,
 } from "../../redux/campers/campersSlice";
 import Loader from "../Loader/Loader";
 import Camper from "../Camper/Camper";
 
 const CampersList = () => {
-  const campers = useSelector(selectCampers);
+  const campers = useSelector(selectFilteredCampers);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   return (

@@ -66,13 +66,19 @@ textarea {
   font-style: normal;
 
   /* color-scheme: light dark; */
-  color: rgb(--var-text);
-  background-color: rgb(--var-main);
+  color: rgb(var(--var-text));
+  background-color: rgb(var(--var-white));
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  max-width: 1440px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 a {
@@ -97,19 +103,19 @@ h1 {
   line-height: 0.67;
 }
 
-button {
+.button {
   border-radius: 200px;
   /* border: 1px solid transparent; */
   padding: 16px 60px;
   font-size: 16px;
   font-weight: 500;
   font-family: inherit;
-  background-color: rgb(--var-button);
+  background-color: rgb(var(--var-button));
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
-  background-color: rgb(--var-button-hover);
+.button:hover {
+  background-color: rgb(var(--var-button-hover));
 }
 /* button:focus,
 button:focus-visible {

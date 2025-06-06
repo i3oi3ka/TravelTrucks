@@ -1,4 +1,7 @@
 @import "/node_modules/modern-normalize/modern-normalize.css";
+@import url("https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,600&display=swap");
 
 * {
   margin: 0;
@@ -42,15 +45,29 @@ textarea {
   resize: vertical;
 }
 
-/* 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* Variables */
+  --var-white: 255, 255, 255;
+  --var-badges: 255, 255, 255;
+  --var-button: 228, 72, 72;
+  --var-button-hover: 216, 67, 67;
+  --var-gray: 108, 113, 123;
+  --var-gray-light: 218, 221, 225;
+  --var-gray-100: 242, 244, 247;
+  --var-inputs: 247, 247, 247;
+  --var-main: 16, 24, 40;
+  --var-rating: 255, 197, 49;
+  --var-text: 71, 84, 103;
+
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
   line-height: 1.5;
   font-weight: 400;
+  font-style: normal;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* color-scheme: light dark; */
+  color: rgb(--var-text);
+  background-color: rgb(--var-main);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -60,44 +77,41 @@ textarea {
 
 a {
   font-weight: 500;
-  color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
-  color: #535bf2;
 }
 
 body {
-  margin: 0;
+  /* margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
+  min-height: 100vh; */
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 0.67;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+  border-radius: 200px;
+  /* border: 1px solid transparent; */
+  padding: 16px 60px;
+  font-size: 16px;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: rgb(--var-button);
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  background-color: rgb(--var-button-hover);
 }
-button:focus,
+/* button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
-
-
 } */

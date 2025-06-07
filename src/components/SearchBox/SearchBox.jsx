@@ -1,20 +1,34 @@
-import { useDispatch, useSelector } from "react-redux";
-import { changeFilters, selectFilters } from "../../redux/filtersSlice";
+import { useDispatch } from "react-redux";
+import { changeFilters } from "../../redux/filtersSlice";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 
 import style from "./SearchBox.module.css";
 
+const EQUIPMENTS = {
+  AC: "AC",
+  automatic: "Automatic",
+  kitchen: "Kitchen",
+  TV: "TV",
+  bathroom: "Bathroom",
+};
+
+const TYPE = {
+  panelTruck: "Van",
+  fullyIntegrated: "Fully Integrated",
+  alcove: "Alcove",
+};
+
 const SearchBox = () => {
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
+  console.log("search", searchParams.get("transmission"));
 
   useEffect(() => {
     dispatch(
       changeFilters({
         location: searchParams.get("location") || "",
         type: searchParams.get("type") || "",
-        transmission: searchParams.get("transmission") || "",
         equipment: searchParams.get("equipment")
           ? searchParams.get("equipment")?.split(",")
           : [],
@@ -26,12 +40,11 @@ const SearchBox = () => {
     event.preventDefault();
     const elements = event.target.elements;
     const location = elements.location.value.trim();
-    const transmission = elements.automatic.checked ? "automatic" : "";
     const type = elements.type.value;
 
     // Collect all checked equipment checkboxes
     const equipment = [];
-    ["AC", "kitchen", "TV", "bathroom"].forEach((name) => {
+    Object.keys(EQUIPMENTS).forEach((name) => {
       if (elements[name] && elements[name].checked) {
         equipment.push(name);
       }
@@ -40,7 +53,6 @@ const SearchBox = () => {
     setSearchParams({
       location,
       type,
-      transmission,
       equipment: equipment.join(","),
     });
   };
@@ -48,114 +60,108 @@ const SearchBox = () => {
   return (
     <section className={style.container}>
       <form onSubmit={handleSubmit}>
-        <label>
+        <label className={style.labelLocation}>
           Location
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className={style.iconMap}
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-          >
-            <use href={"icons.svg#map"}></use>
-          </svg>
-          <input
-            type="text"
-            name="location"
-            defaultValue={searchParams.get("location") || ""}
-            placeholder="City"
-          />
-        </label>
-
-        <fieldset>
-          <legend>Vehicle equipment</legend>
-
-          <label>
-            ac
+          <div className={style.inputWrapper}>
+            <input
+              className={style.inputLocation}
+              type="text"
+              name="location"
+              defaultValue={searchParams.get("location") || ""}
+              placeholder="City"
+            />
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className={style.iconMap}
               width="20"
               height="20"
               viewBox="0 0 20 20"
-              fill="none"
             >
-              <use href={"/src/assets/icons.svg#wind"}></use>
+              <use href={"/src/assets/icons.svg#map"}></use>
             </svg>
-            <input
-              type="checkbox"
-              name="AC"
-              defaultChecked={searchParams.get("equipment")?.includes("AC")}
-            />
-          </label>
-          <label>
-            automatic
-            <input
-              type="checkbox"
-              name="automatic"
-              defaultChecked={searchParams.get("transmission") === "automatic"}
-            />
-          </label>
-          <label>
-            kitchen
-            <input
-              type="checkbox"
-              name="kitchen"
-              defaultChecked={searchParams
-                .get("equipment")
-                ?.includes("kitchen")}
-            />
-          </label>
-          <label>
-            tv
-            <input
-              type="checkbox"
-              name="TV"
-              defaultChecked={searchParams.get("equipment")?.includes("TV")}
-            />
-          </label>
-          <label>
-            bathroom
-            <input
-              type="checkbox"
-              name="bathroom"
-              defaultChecked={searchParams
-                .get("equipment")
-                ?.includes("bathroom")}
-            />
-          </label>
+          </div>
+        </label>
+
+        <fieldset className={style.fieldset}>
+          <legend className={style.legend}>Vehicle equipment</legend>
+
+          <svg
+            className={style.divider}
+            xmlns="http://www.w3.org/2000/svg"
+            width="360"
+            height="2"
+            viewBox="0 0 360 2"
+            fill="none"
+          >
+            <use href={"/src/assets/icons.svg#divider"}></use>
+          </svg>
+          <ul className={style.filterList}>
+            {Object.keys(EQUIPMENTS).map((equipment, idx) => (
+              <li className={style.item} key={`equipment-${idx}`}>
+                <input
+                  id={`equipment-${idx}`}
+                  className={style.visuallyHidden}
+                  type="checkbox"
+                  name={equipment}
+                  defaultChecked={searchParams
+                    .get("equipment")
+                    ?.includes(equipment)}
+                />
+                <label className={style.labelCheckbox} for={`equipment-${idx}`}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                  >
+                    <use href={`/src/assets/icons.svg#${equipment}`}></use>
+                  </svg>
+                  {EQUIPMENTS[equipment]}
+                </label>
+              </li>
+            ))}
+          </ul>
         </fieldset>
 
-        <fieldset>
-          <legend>Vehicle Type</legend>
-          <label>
-            Van
-            <input
-              type="radio"
-              name="type"
-              value="panelTruck"
-              defaultChecked={searchParams.get("type") === "panelTruck"}
-            />
-          </label>
-          <label>
-            Fully integrated
-            <input
-              type="radio"
-              name="type"
-              value="fullyIntegrated"
-              defaultChecked={searchParams.get("type") === "fullyIntegrated"}
-            />
-          </label>
-          <label>
-            Alcove
-            <input
-              type="radio"
-              name="type"
-              value="alcove"
-              defaultChecked={searchParams.get("type") === "alcove"}
-            />
-          </label>
+        <fieldset className={style.fieldsetType}>
+          <legend className={style.legend}> Vehicle Type</legend>
+
+          <svg
+            className={style.divider}
+            xmlns="http://www.w3.org/2000/svg"
+            width="360"
+            height="2"
+            viewBox="0 0 360 2"
+            fill="none"
+          >
+            <use href={"/src/assets/icons.svg#divider"}></use>
+          </svg>
+
+          <ul className={style.filterList}>
+            {Object.keys(TYPE).map((type, idx) => (
+              <li className={style.item} key={`type-${idx}`}>
+                <input
+                  className={style.visuallyHidden}
+                  id={`type-${idx}`}
+                  type="radio"
+                  name="type"
+                  value={type}
+                  defaultChecked={searchParams.get("type") === type}
+                />
+                <label className={style.labelCheckbox} for={`type-${idx}`}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                  >
+                    <use href={`/src/assets/icons.svg#${type}`}></use>
+                  </svg>
+                  {TYPE[type]}
+                </label>
+              </li>
+            ))}
+          </ul>
         </fieldset>
         <button type="submit">Search</button>
       </form>

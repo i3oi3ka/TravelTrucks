@@ -6,6 +6,7 @@ import {
 } from "../../redux/campers/campersSlice";
 import Loader from "../Loader/Loader";
 import Camper from "../Camper/Camper";
+import style from "./CampersList.module.css";
 
 const CampersList = () => {
   const campers = useSelector(selectFilteredCampers);
@@ -16,9 +17,9 @@ const CampersList = () => {
       {isLoading && <Loader />}
       {error && <p>error</p>}
       {campers.length > 0 && (
-        <ul>
+        <ul className={style.camperList}>
           {campers.map((camper) => (
-            <li key={camper.id}>
+            <li key={camper.id} className={style.camperItem}>
               <Camper camper={camper} />
             </li>
           ))}

@@ -52,14 +52,13 @@ export const selectFilteredCampers = createSelector(
         (camper) => camper.form === type
       );
     }
-    if (transmission) {
-      filteredCampers = filteredCampers.filter(
-        (camper) => camper.transmission === transmission
-      );
-    }
     if (equipment) {
       filteredCampers = filteredCampers.filter((camper) =>
-        equipment.every((equip) => camper[equip])
+        equipment.every((equip) =>
+          equip !== "automatic"
+            ? camper[equip]
+            : camper.transmission === "automatic"
+        )
       );
     }
 

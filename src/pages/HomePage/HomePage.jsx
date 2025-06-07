@@ -10,7 +10,9 @@ const HomePage = () => {
         <h2 className={style.slogan}>
           You can find everything you want in our catalog
         </h2>
-        <button onClick={() => navigate("/catalog")}>View Now</button>
+        <button className={style.HeroBtn} onClick={() => navigate("/catalog")}>
+          View Now
+        </button>
       </div>
     </section>
   );

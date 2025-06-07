@@ -96,7 +96,7 @@ button {
   border-radius: 200px;
   /* border: 1px solid transparent; */
   padding: 16px;
-  width: 173px;
+  width: 166px;
   font-size: 16px;
   font-weight: 500;
   font-family: inherit;
@@ -107,7 +107,7 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-.button:hover {
+button:hover {
   background-color: rgb(var(--var-button-hover));
 }
 /* button:focus,

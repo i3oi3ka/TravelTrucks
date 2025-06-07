@@ -93,3 +93,23 @@ input[type="radio"]:checked + .labelCheckbox {
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
+
+.searchBtn {
+  border-radius: 200px;
+  /* border: 1px solid transparent; */
+  padding: 16px;
+  width: 166px;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: inherit;
+  line-height: 1.5;
+  letter-spacing: -0.08px;
+  color: rgb(var(--var-white));
+  background-color: rgb(var(--var-button));
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+.searchBtn:hover {
+  background-color: rgb(var(--var-button-hover));
+}

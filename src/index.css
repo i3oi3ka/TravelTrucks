@@ -48,7 +48,7 @@ textarea {
 :root {
   /* Variables */
   --var-white: 255, 255, 255;
-  --var-badges: 255, 255, 255;
+  --var-badges: 242, 244, 247;
   --var-button: 228, 72, 72;
   --var-button-hover: 216, 67, 67;
   --var-gray: 108, 113, 123;
@@ -64,6 +64,7 @@ textarea {
   line-height: 1.5;
   font-weight: 400;
   font-style: normal;
+  letter-spacing: 0.04em;
 
   color: rgb(var(--var-text));
   background-color: rgb(var(--var-white));
@@ -92,41 +93,13 @@ body {
   margin: 0 auto;
 }
 
-button {
-  border-radius: 200px;
-  /* border: 1px solid transparent; */
-  padding: 16px;
-  width: 166px;
-  font-size: 16px;
-  font-weight: 500;
-  font-family: inherit;
-  line-height: 1.5;
-  letter-spacing: -0.08px;
-  color: rgb(var(--var-white));
-  background-color: rgb(var(--var-button));
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  background-color: rgb(var(--var-button-hover));
-}
 /* button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 } */
 
 h1 {
-  font-size: 48px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 0.66;
-  letter-spacing: 0.04em;
 }
 
 h2 {
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 1.33;
-  letter-spacing: 0.02em;
 }

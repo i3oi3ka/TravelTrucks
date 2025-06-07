@@ -1,0 +1,13 @@
+.addBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  fill: rgb(var(--var-main));
+}
+
+.deleteBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  fill: rgb(var(--var-button));
+}

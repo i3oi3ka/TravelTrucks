@@ -1,58 +1,64 @@
-import { useDispatch, useSelector } from "react-redux";
-import {
-  addFavorite,
-  deleteFavorite,
-  selectFavoriteList,
-} from "../../redux/favoriteSlice";
+import { useNavigate } from "react-router-dom";
 import Categories from "../Categories/Categories";
-import { Link, useLocation } from "react-router-dom";
+import FavoriteBtn from "../FavoriteBtn/FavoriteBtn";
+import style from "./Camper.module.css";
 
 const Camper = ({ camper }) => {
-  const dispatch = useDispatch();
-  const favoriteList = useSelector(selectFavoriteList);
-  const location = useLocation();
-  const handleAddFavoriteBtn = (id) => {
-    dispatch(addFavorite(id));
-  };
-
-  const handleDeleteFavoriteBtn = (id) => {
-    dispatch(deleteFavorite(id));
-  };
+  const navigate = useNavigate();
 
   return (
-    <div>
-      <img src={camper.gallery[0].thumb} alt={camper.description}></img>
+    <div className={style.container}>
+      <img
+        className={style.image}
+        src={camper.gallery[0].thumb}
+        alt={camper.description}
+        width="292px"
+        height="320px"
+      />
       <div>
-        <div>
-          <h3>{camper.name}</h3>
-          <p>{camper.price}</p>
-          {favoriteList.includes(camper.id) ? (
-            <button
-              type="button"
-              onClick={() => handleDeleteFavoriteBtn(camper.id)}
-            >
-              DeleteFavorite
-            </button>
-          ) : (
-            <button
-              type="button"
-              onClick={() => handleAddFavoriteBtn(camper.id)}
-            >
-              AddFavorite
-            </button>
-          )}
+        <div className={style.header}>
+          <p className={style.name}>{camper.name}</p>
+          <p className={style.price}>€{camper.price}.00</p>
+          <FavoriteBtn id={camper.id} />
         </div>
-        <div>
-          <p>{camper.rating}</p>
-          <p>{camper.location}</p>
+        <div className={style.about}>
+          <div className={style.rating}>
+            <svg
+              className={style.iconStar}
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+            >
+              <use href={"/src/assets/icons.svg#star"} />
+            </svg>
+            <p>
+              {camper.rating} ({camper.reviews.length} Reviews)
+            </p>
+          </div>
+          <div className={style.location}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className={style.iconMap}
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+            >
+              <use href={"/src/assets/icons.svg#map"}></use>
+            </svg>
+            <p>{camper.location}</p>
+          </div>
         </div>
-        <div>
+        <div className={style.description}>
           <p>{camper.description}</p>
         </div>
         <Categories camper={camper} />
-        <Link to={camper.id} state={location}>
+        <button
+          className={style.showMoreBtn}
+          onClick={() => navigate(camper.id)}
+        >
           Show more
-        </Link>
+        </button>
       </div>
     </div>
   );

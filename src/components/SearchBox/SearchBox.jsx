@@ -22,7 +22,6 @@ const TYPE = {
 const SearchBox = () => {
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log("search", searchParams.get("transmission"));
 
   useEffect(() => {
     dispatch(
@@ -107,7 +106,10 @@ const SearchBox = () => {
                     .get("equipment")
                     ?.includes(equipment)}
                 />
-                <label className={style.labelCheckbox} for={`equipment-${idx}`}>
+                <label
+                  className={style.labelCheckbox}
+                  htmlFor={`equipment-${idx}`}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="32"
@@ -148,7 +150,7 @@ const SearchBox = () => {
                   value={type}
                   defaultChecked={searchParams.get("type") === type}
                 />
-                <label className={style.labelCheckbox} for={`type-${idx}`}>
+                <label className={style.labelCheckbox} htmlFor={`type-${idx}`}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="32"
@@ -163,7 +165,9 @@ const SearchBox = () => {
             ))}
           </ul>
         </fieldset>
-        <button type="submit">Search</button>
+        <button className={style.searchBtn} type="submit">
+          Search
+        </button>
       </form>
     </section>
   );

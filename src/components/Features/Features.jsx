@@ -1,6 +1,6 @@
 import { useOutletContext } from "react-router-dom";
-import Categories from "../Categories/Categories";
 import VehaicleDetails from "../VehicleDetails/VehaiccleDetails";
+import Categories from "../Categories/Categories";
 
 const Features = () => {
   const camper = useOutletContext();

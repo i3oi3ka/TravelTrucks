@@ -65,7 +65,6 @@ textarea {
   font-weight: 400;
   font-style: normal;
 
-  /* color-scheme: light dark; */
   color: rgb(var(--var-text));
   background-color: rgb(var(--var-white));
 
@@ -90,26 +89,20 @@ a:hover {
 }
 
 body {
-  /* margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh; */
+  margin: 0 auto;
 }
 
-h1 {
-  font-size: 48px;
-  font-weight: 600;
-  line-height: 0.67;
-}
-
-.button {
+button {
   border-radius: 200px;
   /* border: 1px solid transparent; */
-  padding: 16px 60px;
+  padding: 16px;
+  width: 173px;
   font-size: 16px;
   font-weight: 500;
   font-family: inherit;
+  line-height: 1.5;
+  letter-spacing: -0.08px;
+  color: rgb(var(--var-white));
   background-color: rgb(var(--var-button));
   cursor: pointer;
   transition: border-color 0.25s;
@@ -121,3 +114,19 @@ h1 {
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 } */
+
+h1 {
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 0.66;
+  letter-spacing: 0.04em;
+}
+
+h2 {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.33;
+  letter-spacing: 0.02em;
+}

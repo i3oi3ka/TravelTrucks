@@ -1,0 +1,16 @@
+.container {
+  padding: 260px 64px;
+  background: linear-gradient(0deg, #0003, #0003),
+    url(../../assets/images/Hero-bg.jpg) no-repeat;
+  text-align: start;
+  color: rgb(var(--var-inputs));
+  max-width: 1440px;
+}
+
+.title {
+  margin-bottom: 16px;
+}
+
+.slogan {
+  margin-bottom: 40px;
+}

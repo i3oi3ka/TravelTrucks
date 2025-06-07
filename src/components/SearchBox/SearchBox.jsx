@@ -3,14 +3,13 @@ import { changeFilters, selectFilters } from "../../redux/filtersSlice";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 
+import style from "./SearchBox.module.css";
+
 const SearchBox = () => {
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
-  const filters = useSelector(selectFilters);
-  console.log(filters);
 
   useEffect(() => {
-    console.log("jkfhgjkhdfjkgjkdf");
     dispatch(
       changeFilters({
         location: searchParams.get("location") || "",
@@ -27,6 +26,8 @@ const SearchBox = () => {
     event.preventDefault();
     const elements = event.target.elements;
     const location = elements.location.value.trim();
+    const transmission = elements.automatic.checked ? "automatic" : "";
+    const type = elements.type.value;
 
     // Collect all checked equipment checkboxes
     const equipment = [];
@@ -35,9 +36,6 @@ const SearchBox = () => {
         equipment.push(name);
       }
     });
-
-    const transmission = elements.automatic.checked ? "automatic" : "";
-    const type = elements.type.value;
 
     setSearchParams({
       location,
@@ -48,14 +46,25 @@ const SearchBox = () => {
   };
 
   return (
-    <div>
+    <section className={style.container}>
       <form onSubmit={handleSubmit}>
         <label>
           Location
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className={style.iconMap}
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+          >
+            <use href={"icons.svg#map"}></use>
+          </svg>
           <input
             type="text"
             name="location"
             defaultValue={searchParams.get("location") || ""}
+            placeholder="City"
           />
         </label>
 
@@ -64,6 +73,16 @@ const SearchBox = () => {
 
           <label>
             ac
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className={style.iconMap}
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+            >
+              <use href={"/src/assets/icons.svg#wind"}></use>
+            </svg>
             <input
               type="checkbox"
               name="AC"
@@ -140,7 +159,7 @@ const SearchBox = () => {
         </fieldset>
         <button type="submit">Search</button>
       </form>
-    </div>
+    </section>
   );
 };
 

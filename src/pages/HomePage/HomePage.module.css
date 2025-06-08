@@ -1,7 +1,7 @@
 .container {
   padding: 260px 64px;
   background: linear-gradient(0deg, #0003, #0003),
-    url(../../assets/images/Hero-bg.jpg) no-repeat;
+    url(/images/Hero-bg.jpg) no-repeat;
   text-align: start;
   color: rgb(var(--var-inputs));
   max-width: 1440px;
@@ -27,7 +27,6 @@
 
 .HeroBtn {
   border-radius: 200px;
-  /* border: 1px solid transparent; */
   padding: 16px;
   width: 173px;
   font-size: 16px;

@@ -30,7 +30,7 @@ const Camper = ({ camper }) => {
               height="16"
               viewBox="0 0 16 16"
             >
-              <use href={"/src/assets/icons.svg#star"} />
+              <use href={"/icons.svg#star"} />
             </svg>
             <p>
               {camper.rating} ({camper.reviews.length} Reviews)
@@ -44,7 +44,7 @@ const Camper = ({ camper }) => {
               height="16"
               viewBox="0 0 16 16"
             >
-              <use href={"/src/assets/icons.svg#map"}></use>
+              <use href={"/icons.svg#map"}></use>
             </svg>
             <p>{camper.location}</p>
           </div>

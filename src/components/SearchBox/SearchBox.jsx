@@ -76,7 +76,7 @@ const SearchBox = () => {
               height="20"
               viewBox="0 0 20 20"
             >
-              <use href={"/src/assets/icons.svg#map"}></use>
+              <use href={"/icons.svg#map"}></use>
             </svg>
           </div>
         </label>
@@ -92,7 +92,7 @@ const SearchBox = () => {
             viewBox="0 0 360 2"
             fill="none"
           >
-            <use href={"/src/assets/icons.svg#divider"}></use>
+            <use href={"/icons.svg#divider"}></use>
           </svg>
           <ul className={style.filterList}>
             {Object.keys(EQUIPMENTS).map((equipment, idx) => (
@@ -116,7 +116,7 @@ const SearchBox = () => {
                     height="32"
                     viewBox="0 0 32 32"
                   >
-                    <use href={`/src/assets/icons.svg#${equipment}`}></use>
+                    <use href={`/icons.svg#${equipment}`}></use>
                   </svg>
                   {EQUIPMENTS[equipment]}
                 </label>
@@ -136,7 +136,7 @@ const SearchBox = () => {
             viewBox="0 0 360 2"
             fill="none"
           >
-            <use href={"/src/assets/icons.svg#divider"}></use>
+            <use href={"/icons.svg#divider"}></use>
           </svg>
 
           <ul className={style.filterList}>
@@ -157,7 +157,7 @@ const SearchBox = () => {
                     height="32"
                     viewBox="0 0 32 32"
                   >
-                    <use href={`/src/assets/icons.svg#${type}`}></use>
+                    <use href={`/icons.svg#${type}`}></use>
                   </svg>
                   {TYPE[type]}
                 </label>

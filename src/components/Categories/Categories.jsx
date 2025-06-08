@@ -29,7 +29,7 @@ const Categories = ({ camper }) => {
           height="20"
           viewBox="0 0 20 20"
         >
-          <use href={"/src/assets/icons.svg#automatic"}></use>
+          <use href={"/icons.svg#automatic"}></use>
         </svg>
         <p>{transmission}</p>
       </li>
@@ -41,7 +41,7 @@ const Categories = ({ camper }) => {
           height="20"
           viewBox="0 0 20 20"
         >
-          <use href={"/src/assets/icons.svg#engine"}></use>
+          <use href={"/icons.svg#engine"}></use>
         </svg>
         <p>{engine}</p>
       </li>
@@ -54,7 +54,7 @@ const Categories = ({ camper }) => {
             height="20"
             viewBox="0 0 20 20"
           >
-            <use href={`/src/assets/icons.svg#${category}`}></use>
+            <use href={`/icons.svg#${category}`}></use>
           </svg>
           <p>{categoriesList[category]}</p>
         </li>

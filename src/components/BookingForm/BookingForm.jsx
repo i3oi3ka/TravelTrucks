@@ -1,6 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { object, string, date } from "yup";
 import style from "./BookingForm.module.css";
+import DateInput from "../DateInput/DateInput";
 
 const BookingForm = () => {
   const initialValues = { name: "", email: "", bookingDate: "", comment: "" };
@@ -40,6 +41,7 @@ const BookingForm = () => {
             placeholder="Name*"
           />
           <ErrorMessage name="name" component="span" />
+
           <Field
             className={style.input}
             type="email"
@@ -47,13 +49,10 @@ const BookingForm = () => {
             placeholder="Email*"
           />
           <ErrorMessage name="email" component="span" />
-          <Field
-            className={style.input}
-            type="date"
-            name="bookingDate"
-            placeholder="Booking date*"
-          />
+
+          <DateInput name="bookingDate" />
           <ErrorMessage name="bookingDate" component="span" />
+
           <Field
             className={style.input}
             as="textarea"

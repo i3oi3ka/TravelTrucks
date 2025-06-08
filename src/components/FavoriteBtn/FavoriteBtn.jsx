@@ -30,7 +30,7 @@ const FavoriteBtn = ({ id }) => {
             height="24"
             viewBox="0 0 26 24"
           >
-            <use href={"/src/assets/icons.svg#hearth"}></use>
+            <use href={"/icons.svg#hearth"}></use>
           </svg>
         </button>
       ) : (
@@ -42,7 +42,7 @@ const FavoriteBtn = ({ id }) => {
             height="24"
             viewBox="0 0 26 24"
           >
-            <use href={"/src/assets/icons.svg#hearth"}></use>
+            <use href={"/icons.svg#hearth"}></use>
           </svg>
         </button>
       )}

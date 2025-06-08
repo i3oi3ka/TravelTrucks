@@ -3,16 +3,17 @@ import VehaicleDetails from "../VehicleDetails/VehaicleDetails";
 import Categories from "../Categories/Categories";
 import style from "./Features.module.css";
 import { FORM } from "../../constans/constans";
+import { addSpace } from "../../utils/utils";
 
 const Features = () => {
   const camper = useOutletContext();
   const details = {
     Form: FORM[camper.form],
-    Length: camper.length,
-    Width: camper.width,
-    Height: camper.height,
-    Tank: camper.tank,
-    Consumption: camper.consumption,
+    Length: addSpace(camper.length),
+    Width: addSpace(camper.width),
+    Height: addSpace(camper.height),
+    Tank: addSpace(camper.tank),
+    Consumption: addSpace(camper.consumption, 2),
   };
   return (
     <section className={style.container}>

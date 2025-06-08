@@ -1,5 +1,6 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { object, string, date } from "yup";
+import style from "./BookingForm.module.css";
 
 const BookingForm = () => {
   const initialValues = { name: "", email: "", bookingDate: "", comment: "" };
@@ -18,10 +19,12 @@ const BookingForm = () => {
     action.resetForm();
   };
   return (
-    <section>
-      <div>
-        <h3>Book your campervan now</h3>
-        <p>Stay connected! We are always ready to help you.</p>
+    <section className={style.container}>
+      <div className={style.header}>
+        <h3 className={style.title}>Book your campervan now</h3>
+        <p className={style.desc}>
+          Stay connected! We are always ready to help you.
+        </p>
       </div>
       <Formik
         initialValues={initialValues}
@@ -29,16 +32,38 @@ const BookingForm = () => {
         validateOnMount={true}
         onSubmit={handleSubmit}
       >
-        <Form>
-          <Field type="text" name="name" placeholder="Name*" />
+        <Form className={style.form}>
+          <Field
+            className={style.input}
+            type="text"
+            name="name"
+            placeholder="Name*"
+          />
           <ErrorMessage name="name" component="span" />
-          <Field type="email" name="email" placeholder="Email*" />
+          <Field
+            className={style.input}
+            type="email"
+            name="email"
+            placeholder="Email*"
+          />
           <ErrorMessage name="email" component="span" />
-          <Field type="date" name="bookingDate" placeholder="Booking date*" />
+          <Field
+            className={style.input}
+            type="date"
+            name="bookingDate"
+            placeholder="Booking date*"
+          />
           <ErrorMessage name="bookingDate" component="span" />
-          <Field as="textarea" name="comment" placeholder="Comment" />
+          <Field
+            className={style.input}
+            as="textarea"
+            name="comment"
+            placeholder="Comment"
+          />
           <ErrorMessage name="comment" component="span" />
-          <button type="submit">Send</button>
+          <button className={style.sendBtn} type="submit">
+            Send
+          </button>
         </Form>
       </Formik>
     </section>

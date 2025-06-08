@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 
 import style from "./SearchBox.module.css";
+import Divider from "../Divider/Divider";
 
 const EQUIPMENTS = {
   AC: "AC",
@@ -83,17 +84,7 @@ const SearchBox = () => {
 
         <fieldset className={style.fieldset}>
           <legend className={style.legend}>Vehicle equipment</legend>
-
-          <svg
-            className={style.divider}
-            xmlns="http://www.w3.org/2000/svg"
-            width="360"
-            height="2"
-            viewBox="0 0 360 2"
-            fill="none"
-          >
-            <use href={"/icons.svg#divider"}></use>
-          </svg>
+          <Divider width={360} />
           <ul className={style.filterList}>
             {Object.keys(EQUIPMENTS).map((equipment, idx) => (
               <li className={style.item} key={`equipment-${idx}`}>
@@ -127,18 +118,7 @@ const SearchBox = () => {
 
         <fieldset className={style.fieldsetType}>
           <legend className={style.legend}> Vehicle Type</legend>
-
-          <svg
-            className={style.divider}
-            xmlns="http://www.w3.org/2000/svg"
-            width="360"
-            height="2"
-            viewBox="0 0 360 2"
-            fill="none"
-          >
-            <use href={"/icons.svg#divider"}></use>
-          </svg>
-
+          <Divider width={360} />
           <ul className={style.filterList}>
             {Object.keys(TYPE).map((type, idx) => (
               <li className={style.item} key={`type-${idx}`}>

@@ -27,36 +27,12 @@
 }
 
 .name {
-  flex-grow: 1;
-}
-
-.about {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 24px;
-
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.5;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.33;
+  letter-spacing: 0.02em;
   text-align: start;
-}
-
-.rating {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.iconStar {
-  fill: rgb(var(--var-rating));
-}
-
-.location {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
+  flex-grow: 1;
 }
 
 .description {
@@ -67,7 +43,7 @@
   overflow: hidden;
   color: rgb(var(--var-text));
   line-height: 1.5;
-  margin-bottom: 24px;
+  margin: 24px 0px;
 }
 
 .showMoreBtn {

@@ -3,13 +3,17 @@ import { NavLink, Outlet, useParams } from "react-router-dom";
 import { fetchCamperById } from "../../api/api";
 import Loader from "../../components/Loader/Loader";
 import BookingForm from "../../components/BookingForm/BookingForm";
+import style from "./CamperDetailPage.module.css";
+import CamperRating from "../../components/CamperRating/CamperRating";
+import Divider from "../../components/Divider/Divider";
 
 const CamperDetailPage = () => {
   const [camper, setCamper] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const { id } = useParams();
-
+  const navClasses = ({ isActive }) =>
+    isActive ? `${style.link} ${style.active}` : style.link;
   useEffect(() => {
     const getCamper = async () => {
       try {
@@ -26,35 +30,54 @@ const CamperDetailPage = () => {
   }, [id]);
 
   return (
-    <div>
+    <div className={style.container}>
       {isLoading && <Loader />}
       {error && <p>error</p>}
       {camper && (
         <div>
           <section>
-            <div>
-              <h2>{camper.name}</h2>
-              <p>{camper.rating}</p>
-              <p>{camper.location}</p>
-              <p>{camper.price}</p>
+            <div className={style.header}>
+              <h2 className={style.title}>{camper.name}</h2>
+              <CamperRating
+                link="reviews"
+                rating={camper.rating}
+                reviews={camper.reviews}
+                location={camper.location}
+              />
+              <p className={style.price}>€{camper.price}.00</p>
             </div>
-            <ul>
+            <ul className={style.gallery}>
               {camper.gallery.map((image, idx) => (
-                <li key={idx}>
-                  <img src={image.thumb} alt={camper.name} />
+                <li key={`image-${idx}`}>
+                  <img
+                    className={style.image}
+                    src={image.thumb}
+                    alt={camper.name}
+                  />
                 </li>
               ))}
             </ul>
             <div>
-              <p>{camper.description}</p>
+              <p className={style.description}>{camper.description}</p>
             </div>
           </section>
-          <div>
-            <NavLink to="features">Features</NavLink>
-            <NavLink to="reviews">Reviews</NavLink>
-            <Outlet context={camper} />
+          <div className={style.nav}>
+            <NavLink className={navClasses} to="features">
+              Features
+            </NavLink>
+            <NavLink className={navClasses} to="reviews">
+              Reviews
+            </NavLink>
           </div>
-          <BookingForm />
+          <Divider width={1312} />
+          <div className={style.details}>
+            <div className={style.detailsItem}>
+              <Outlet context={camper} />
+            </div>
+            <div className={style.detailsItem}>
+              <BookingForm />
+            </div>
+          </div>
         </div>
       )}
     </div>

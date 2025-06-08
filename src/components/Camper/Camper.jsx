@@ -1,7 +1,8 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Categories from "../Categories/Categories";
 import FavoriteBtn from "../FavoriteBtn/FavoriteBtn";
 import style from "./Camper.module.css";
+import CamperRating from "../CamperRating/CamperRating";
 
 const Camper = ({ camper }) => {
   const navigate = useNavigate();
@@ -17,38 +18,16 @@ const Camper = ({ camper }) => {
       />
       <div>
         <div className={style.header}>
-          <p className={style.name}>{camper.name}</p>
+          <h2 className={style.name}>{camper.name}</h2>
           <p className={style.price}>€{camper.price}.00</p>
           <FavoriteBtn id={camper.id} />
         </div>
-        <div className={style.about}>
-          <div className={style.rating}>
-            <svg
-              className={style.iconStar}
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-            >
-              <use href={"/icons.svg#star"} />
-            </svg>
-            <p>
-              {camper.rating} ({camper.reviews.length} Reviews)
-            </p>
-          </div>
-          <div className={style.location}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className={style.iconMap}
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-            >
-              <use href={"/icons.svg#map"}></use>
-            </svg>
-            <p>{camper.location}</p>
-          </div>
-        </div>
+        <CamperRating
+          link={`${camper.id}/reviews`}
+          rating={camper.rating}
+          location={camper.location}
+          reviews={camper.reviews}
+        />
         <div className={style.description}>
           <p>{camper.description}</p>
         </div>

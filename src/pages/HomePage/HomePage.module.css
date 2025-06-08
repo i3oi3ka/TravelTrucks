@@ -5,6 +5,15 @@
   text-align: start;
   color: rgb(var(--var-inputs));
   max-width: 1440px;
+  background-size: cover;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .container {
+    background: linear-gradient(0deg, #0003, #0003),
+      url(/images/Hero-bg@2x.jpg) no-repeat;
+    background-size: cover;
+  }
 }
 
 .title {

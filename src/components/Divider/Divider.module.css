@@ -1,0 +1,5 @@
+.divider {
+  stroke: rgb(var(--var-gray-light));
+  margin: 24px 0px;
+  width: 1312;
+}

@@ -27,11 +27,6 @@
   fill: rgb(var(--var-main));
 }
 
-.divider {
-  stroke: rgb(var(--var-gray-light));
-  margin: 24px 0px;
-}
-
 .legend {
   color: rgb(var(--var-main));
 }

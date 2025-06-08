@@ -3,7 +3,7 @@ import style from "./Header.module.css";
 import logo from "/Logo.svg";
 
 const Header = () => {
-  const navClasses = ({ isActive }) => (isActive ? style.active : "");
+  const navClasses = ({ isActive }) => (isActive ? style.active : style.link);
   return (
     <header className={style.container}>
       <Link to="/">

@@ -1,21 +1,11 @@
+import { CATEGORIES } from "../../constans/constans";
+import { capitalize } from "../../utils/utils";
 import style from "./Categories.module.css";
-
-const categoriesList = {
-  ac: "AC",
-  bathroom: "Bathroom",
-  kitchen: "Kitchen",
-  TV: "TV",
-  radio: "Radio",
-  refregirator: "Refregirator",
-  microwave: "Microwave",
-  gas: "Gas",
-  water: "Water",
-};
 
 const Categories = ({ camper }) => {
   const transmission = camper.transmission;
   const engine = camper.engine;
-  const categories = Object.keys(categoriesList).filter(
+  const categories = Object.keys(CATEGORIES).filter(
     (category) => camper[category]
   );
 
@@ -31,7 +21,7 @@ const Categories = ({ camper }) => {
         >
           <use href={"/icons.svg#automatic"}></use>
         </svg>
-        <p>{transmission}</p>
+        <p>{capitalize(transmission)}</p>
       </li>
       <li className={style.item}>
         <svg
@@ -43,7 +33,7 @@ const Categories = ({ camper }) => {
         >
           <use href={"/icons.svg#engine"}></use>
         </svg>
-        <p>{engine}</p>
+        <p>{capitalize(engine)}</p>
       </li>
       {categories.map((category, idx) => (
         <li key={`categories-${idx}`} className={style.item}>
@@ -56,7 +46,7 @@ const Categories = ({ camper }) => {
           >
             <use href={`/icons.svg#${category}`}></use>
           </svg>
-          <p>{categoriesList[category]}</p>
+          <p>{CATEGORIES[category]}</p>
         </li>
       ))}
     </ul>

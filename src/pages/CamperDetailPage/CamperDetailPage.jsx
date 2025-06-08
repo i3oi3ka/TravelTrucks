@@ -53,6 +53,7 @@ const CamperDetailPage = () => {
                     className={style.image}
                     src={image.thumb}
                     alt={camper.name}
+                    height="312"
                   />
                 </li>
               ))}

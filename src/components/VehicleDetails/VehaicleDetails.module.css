@@ -1,0 +1,28 @@
+.container {
+  text-align: start;
+}
+
+.title {
+  color: rgb(var(--var-main));
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  color: rgb(var(--var-main));
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.detail {
+  display: flex;
+  justify-content: space-between;
+}

@@ -5,20 +5,7 @@ import { useEffect } from "react";
 
 import style from "./SearchBox.module.css";
 import Divider from "../Divider/Divider";
-
-const EQUIPMENTS = {
-  AC: "AC",
-  automatic: "Automatic",
-  kitchen: "Kitchen",
-  TV: "TV",
-  bathroom: "Bathroom",
-};
-
-const TYPE = {
-  panelTruck: "Van",
-  fullyIntegrated: "Fully Integrated",
-  alcove: "Alcove",
-};
+import { EQUIPMENTS, TYPE } from "../../constans/constans";
 
 const SearchBox = () => {
   const dispatch = useDispatch();

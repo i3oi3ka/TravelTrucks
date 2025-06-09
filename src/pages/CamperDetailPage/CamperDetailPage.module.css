@@ -44,6 +44,11 @@
   height: 312px;
   object-fit: cover;
   cursor: zoom-in;
+  transition: transform 200ms ease-in;
+}
+
+.image:hover {
+  transform: scale(110%);
 }
 
 .description {

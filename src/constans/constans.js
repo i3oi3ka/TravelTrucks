@@ -1,5 +1,5 @@
 export const CATEGORIES = {
-  ac: "AC",
+  AC: "AC",
   bathroom: "Bathroom",
   kitchen: "Kitchen",
   TV: "TV",

@@ -1,12 +1,50 @@
-# React + Vite
+# TravelTrucks – Camper Rental Web App (Frontend)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🚀 Project Overview
 
-Currently, two official plugins are available:
+**TravelTrucks** is a frontend web application developed for a camper rental company. The goal of the project is to provide users with a seamless and interactive experience for browsing, filtering, and booking campers online.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project consumes a ready-made backend API for working with camper listings:  
+**API Base URL**: [https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers](https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📦 Tech Stack
+
+- **React** (with Vite bundler)
+- **Redux Toolkit** (for state management)
+- **React Router** (for routing)
+- **Axios** (for HTTP requests)
+- **CSS Modules** (for styling)
+
+---
+
+## 📄 Pages & Routes
+
+- `/` – Home Page  
+  Contains a banner and a call-to-action button “View Now”.
+
+- `/catalog` – Catalog Page  
+  Displays all available campers with filter options and pagination.
+
+- `/catalog/:id` – Camper Details Page  
+  Includes full details, image gallery, reviews, and a booking form.
+
+---
+
+## 🔧 API Endpoints
+
+- `GET /campers` – Fetch all campers (supports optional filtering)
+- `GET /campers/:id` – Fetch camper details by ID
+
+---
+
+## 📥 Installation & Launch
+
+```bash
+git clone https://github.com/i3oi3ka/TravelTrucks.git
+cd traveltrucks
+
+npm install
+npm run dev
+```

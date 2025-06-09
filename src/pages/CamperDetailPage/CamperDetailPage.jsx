@@ -1,18 +1,31 @@
 import { useEffect, useState } from "react";
 import { NavLink, Outlet, useParams } from "react-router-dom";
 import { fetchCamperById } from "../../api/api";
+import { Bounce, ToastContainer } from "react-toastify";
 import Loader from "../../components/Loader/Loader";
 import BookingForm from "../../components/BookingForm/BookingForm";
 import style from "./CamperDetailPage.module.css";
 import CamperRating from "../../components/CamperRating/CamperRating";
 import Divider from "../../components/Divider/Divider";
-import { Bounce, ToastContainer } from "react-toastify";
+import ImageModal from "../../components/ImageModal/ImageModal";
 
 const CamperDetailPage = () => {
   const [camper, setCamper] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedPhoto, setselectedPhoto] = useState(null);
   const { id } = useParams();
+
+  const openModal = (photo) => {
+    setselectedPhoto(photo);
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+    setselectedPhoto(null);
+  };
 
   const navClasses = ({ isActive }) =>
     isActive ? `${style.link} ${style.active}` : style.link;
@@ -35,7 +48,7 @@ const CamperDetailPage = () => {
   return (
     <div className={style.container}>
       {isLoading && <Loader />}
-      {error && <p>error</p>}
+      {error && <p className={style.message}>{error}</p>}
       {camper && (
         <div>
           <section>
@@ -57,6 +70,7 @@ const CamperDetailPage = () => {
                     src={image.thumb}
                     alt={camper.name}
                     height="312"
+                    onClick={() => openModal(image.original)}
                   />
                 </li>
               ))}
@@ -84,6 +98,11 @@ const CamperDetailPage = () => {
           </div>
         </div>
       )}
+      <ImageModal
+        modalIsOpen={modalIsOpen}
+        closeModal={closeModal}
+        selectedPhoto={selectedPhoto}
+      />
       <ToastContainer
         position="top-center"
         autoClose={8000}

@@ -11,6 +11,7 @@
 .image {
   object-fit: cover;
   border-radius: 10px;
+  cursor: zoom-in;
 }
 
 .header {

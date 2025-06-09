@@ -4,7 +4,7 @@ import FavoriteBtn from "../FavoriteBtn/FavoriteBtn";
 import style from "./Camper.module.css";
 import CamperRating from "../CamperRating/CamperRating";
 
-const Camper = ({ camper }) => {
+const Camper = ({ camper, openModal }) => {
   const navigate = useNavigate();
 
   return (
@@ -15,6 +15,7 @@ const Camper = ({ camper }) => {
         alt={camper.description}
         width="292px"
         height="320px"
+        onClick={() => openModal(camper.gallery[0].original)}
       />
       <div>
         <div className={style.header}>

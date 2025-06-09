@@ -6,6 +6,7 @@ import BookingForm from "../../components/BookingForm/BookingForm";
 import style from "./CamperDetailPage.module.css";
 import CamperRating from "../../components/CamperRating/CamperRating";
 import Divider from "../../components/Divider/Divider";
+import { Bounce, ToastContainer } from "react-toastify";
 
 const CamperDetailPage = () => {
   const [camper, setCamper] = useState(null);
@@ -78,11 +79,24 @@ const CamperDetailPage = () => {
               <Outlet context={camper} />
             </div>
             <div className={style.detailsItem}>
-              <BookingForm />
+              <BookingForm camperName={camper.name} />
             </div>
           </div>
         </div>
       )}
+      <ToastContainer
+        position="top-center"
+        autoClose={8000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={true}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
     </div>
   );
 };

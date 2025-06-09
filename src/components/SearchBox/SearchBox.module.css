@@ -106,7 +106,7 @@ input[type="radio"]:checked + .labelCheckbox {
   color: rgb(var(--var-white));
   background-color: rgb(var(--var-button));
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: background-color 0.25s;
 }
 
 .searchBtn:hover {

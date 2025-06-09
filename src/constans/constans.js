@@ -29,3 +29,5 @@ export const TYPE = {
   fullyIntegrated: "Fully Integrated",
   alcove: "Alcove",
 };
+
+export const PER_PAGE = 4;

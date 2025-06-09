@@ -2,8 +2,9 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { object, string, date } from "yup";
 import style from "./BookingForm.module.css";
 import DateInput from "../DateInput/DateInput";
+import { toast } from "react-toastify";
 
-const BookingForm = () => {
+const BookingForm = ({ camperName }) => {
   const initialValues = { name: "", email: "", bookingDate: "", comment: "" };
   const BookingSchema = object({
     name: string()
@@ -18,7 +19,9 @@ const BookingForm = () => {
   });
 
   const handleSubmit = (values, action) => {
-    console.log(values);
+    toast(
+      `Camper ${camperName} has been successfully booked for ${values.bookingDate.toDateString()}. Thank you for your reservation!`
+    );
     action.resetForm();
   };
   return (

@@ -61,9 +61,6 @@ export const selectFilteredCampers = createSelector(
         )
       );
     }
-
-    console.log(filteredCampers);
-
     return filteredCampers;
   }
 );

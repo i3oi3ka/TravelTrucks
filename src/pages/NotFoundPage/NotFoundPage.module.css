@@ -1,0 +1,13 @@
+.container {
+  padding: 260px 64px;
+  background: linear-gradient(0deg, #0003, #0003),
+    url(/images/bg-404.jpg) no-repeat;
+  text-align: start;
+  color: rgb(var(--var-inputs));
+  max-width: 1440px;
+  background-size: cover;
+}
+
+.title {
+  font-size: 78px;
+}

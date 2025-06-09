@@ -79,27 +79,5 @@ textarea {
   max-width: 1440px;
   margin: 0 auto;
   text-align: center;
-}
-
-a {
-  font-weight: 500;
-  text-decoration: inherit;
-}
-
-a:hover {
-}
-
-body {
   margin: 0 auto;
-}
-
-/* button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-} */
-
-h1 {
-}
-
-h2 {
 }

@@ -1,0 +1,28 @@
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+  background-color: rgb(var(--var-text));
+  color: rgb(var(--var-inputs));
+  border-radius: 50%;
+}
+
+.react-datepicker__header {
+  background-color: white;
+}
+
+.react-datepicker__current-month {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.react-datepicker__day-names {
+  /* display: flex;
+  justify-content: space-around;
+  margin-top: 10px; */
+  font-size: 12px;
+  font-weight: 600;
+  color: rgb(var(--var-text));
+}
+
+.react-datepicker__navigation-icon::before {
+  border-color: rgb(var(--var-text));
+}

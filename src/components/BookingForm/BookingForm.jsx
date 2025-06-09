@@ -11,7 +11,9 @@ const BookingForm = () => {
       .max(30, "to long name")
       .required("required"),
     email: string().email().required("required"),
-    bookingDate: date().required("required"),
+    bookingDate: date()
+      .required("required")
+      .min(new Date(), "Date must be in the future"),
     comment: string().max(300, "to long comment"),
   });
 
@@ -34,32 +36,55 @@ const BookingForm = () => {
         onSubmit={handleSubmit}
       >
         <Form className={style.form}>
-          <Field
-            className={style.input}
-            type="text"
-            name="name"
-            placeholder="Name*"
-          />
-          <ErrorMessage name="name" component="span" />
+          <label className={style.label}>
+            <Field
+              className={style.input}
+              type="text"
+              name="name"
+              placeholder="Name*"
+            />
+            <ErrorMessage
+              name="name"
+              component="span"
+              className={style.error}
+            />
+          </label>
 
-          <Field
-            className={style.input}
-            type="email"
-            name="email"
-            placeholder="Email*"
-          />
-          <ErrorMessage name="email" component="span" />
+          <label className={style.label}>
+            <Field
+              className={style.input}
+              type="email"
+              name="email"
+              placeholder="Email*"
+            />
+            <ErrorMessage
+              name="email"
+              component="span"
+              className={style.error}
+            />
+          </label>
 
-          <DateInput name="bookingDate" />
-          <ErrorMessage name="bookingDate" component="span" />
-
-          <Field
-            className={style.input}
-            as="textarea"
-            name="comment"
-            placeholder="Comment"
-          />
-          <ErrorMessage name="comment" component="span" />
+          <label className={style.label}>
+            <DateInput name="bookingDate" />
+            <ErrorMessage
+              name="bookingDate"
+              component="span"
+              className={style.error}
+            />
+          </label>
+          <label className={style.label}>
+            <Field
+              className={`${style.input} ${style.textarea}`}
+              as="textarea"
+              name="comment"
+              placeholder="Comment"
+            />
+            <ErrorMessage
+              name="comment"
+              component="span"
+              className={style.error}
+            />
+          </label>
           <button className={style.sendBtn} type="submit">
             Send
           </button>

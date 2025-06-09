@@ -1,8 +1,9 @@
 .container {
   border: 1px solid rgb(var(--var-gray-light));
+  width: 641px;
   border-radius: 10px;
   height: 100%;
-  padding: 44px;
+  padding: 44px 57px;
   text-align: start;
 }
 
@@ -30,9 +31,13 @@
   gap: 14px;
 }
 
+.label {
+  position: relative;
+}
+
 .input {
   padding: 18px;
-  width: 100%;
+  width: 527px;
   border-radius: 10px;
   background-color: rgb(var(--var-inputs));
   color: rgb(var(--var-main));
@@ -40,6 +45,17 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
+}
+
+.textarea {
+  height: 118px;
+}
+
+.error {
+  position: absolute;
+  top: 5px;
+  right: 18px;
+  color: rgb(var(--var-button));
 }
 
 .sendBtn {

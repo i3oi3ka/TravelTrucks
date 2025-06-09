@@ -3,7 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   location: "",
   type: "",
-  automatic: "",
   equipment: [],
 };
 const filtersSlice = createSlice({

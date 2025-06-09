@@ -19,6 +19,10 @@
   margin-bottom: 40px;
 }
 
+.inputLocation:placeholder-shown ~ .iconMap {
+  fill: rgb(var(--var-gray));
+}
+
 .iconMap {
   position: absolute;
   top: 50%;

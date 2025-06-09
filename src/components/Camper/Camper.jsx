@@ -34,7 +34,7 @@ const Camper = ({ camper }) => {
         <Categories camper={camper} />
         <button
           className={style.showMoreBtn}
-          onClick={() => navigate(camper.id)}
+          onClick={() => navigate(`${camper.id}/features`)}
         >
           Show more
         </button>

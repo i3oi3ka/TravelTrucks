@@ -39,7 +39,7 @@ export const selectCampers = (state) => state.campers.items;
 
 export const selectFilteredCampers = createSelector(
   [selectFilters, selectCampers],
-  ({ location, type, transmission, equipment }, campers) => {
+  ({ location, type, equipment }, campers) => {
     let filteredCampers = campers;
 
     if (location) {

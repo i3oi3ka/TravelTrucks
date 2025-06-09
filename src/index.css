@@ -42,7 +42,7 @@ img {
 }
 
 textarea {
-  resize: vertical;
+  resize: none;
 }
 
 :root {

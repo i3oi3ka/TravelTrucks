@@ -12,8 +12,10 @@ const CamperDetailPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const { id } = useParams();
+
   const navClasses = ({ isActive }) =>
     isActive ? `${style.link} ${style.active}` : style.link;
+
   useEffect(() => {
     const getCamper = async () => {
       try {

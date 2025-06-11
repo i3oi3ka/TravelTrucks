@@ -15,8 +15,8 @@ const filtersSlice = createSlice({
     changeFilters: (state, { payload }) => {
       return payload;
     },
-    changePage: (state) => {
-      return { ...state, page: state.page + 1 };
+    changePage: (state, { payload }) => {
+      return { ...state, page: payload };
     },
   },
 });

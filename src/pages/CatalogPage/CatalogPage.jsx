@@ -17,14 +17,14 @@ const CatalogPage = () => {
 
   useEffect(() => {
     if (filters.page === 1) {
-      dispatch(fetchCampersThunk());
+      dispatch(fetchCampersThunk(filters));
       return;
     }
     dispatch(fetchCampersThunkNextPage(filters));
   }, [dispatch, filters]);
 
   const nextPage = () => {
-    dispatch(changePage());
+    dispatch(changePage(filters.page + 1));
   };
 
   return (

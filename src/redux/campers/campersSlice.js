@@ -1,5 +1,5 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { fetchCampersThunk } from "./campersOps";
+import { fetchCampersThunk, fetchCampersThunkNextPage } from "./campersOps";
 import { selectFilters } from "../filtersSlice";
 
 const handlePending = (state) => {
@@ -25,12 +25,20 @@ const campersSlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(fetchCampersThunk.fulfilled, (state, { payload }) => {
-        state.items = payload;
+        state.items = payload.items;
+        state.total = payload.total;
         state.isLoading = false;
         state.error = null;
       })
       .addCase(fetchCampersThunk.pending, handlePending)
-      .addCase(fetchCampersThunk.rejected, handleRejected),
+      .addCase(fetchCampersThunk.rejected, handleRejected)
+      .addCase(fetchCampersThunkNextPage.fulfilled, (state, { payload }) => {
+        state.items.push(...payload);
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(fetchCampersThunkNextPage.pending, handlePending)
+      .addCase(fetchCampersThunkNextPage.rejected, handleRejected),
 });
 
 export const campersReducer = campersSlice.reducer;
@@ -68,3 +76,5 @@ export const selectFilteredCampers = createSelector(
 export const selectIsLoading = (state) => state.campers.isLoading;
 
 export const selectError = (state) => state.campers.error;
+
+export const selectTotalCampers = (state) => state.campers.total;

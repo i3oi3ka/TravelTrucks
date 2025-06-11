@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 import style from "./SearchBox.module.css";
 import Divider from "../Divider/Divider";
-import { EQUIPMENTS, TYPE } from "../../constans/constans";
+import { EQUIPMENTS, PER_PAGE, TYPE } from "../../constans/constans";
 
 const SearchBox = () => {
   const dispatch = useDispatch();
@@ -14,8 +14,10 @@ const SearchBox = () => {
   useEffect(() => {
     dispatch(
       changeFilters({
+        page: 1,
+        limit: PER_PAGE,
         location: searchParams.get("location") || "",
-        type: searchParams.get("type") || "",
+        form: searchParams.get("form") || "",
         equipment: searchParams.get("equipment")
           ? searchParams.get("equipment")?.split(",")
           : [],
@@ -27,7 +29,7 @@ const SearchBox = () => {
     event.preventDefault();
     const elements = event.target.elements;
     const location = elements.location.value.trim();
-    const type = elements.type.value;
+    const form = elements.form.value;
 
     // Collect all checked equipment checkboxes
     const equipment = [];
@@ -39,7 +41,7 @@ const SearchBox = () => {
 
     setSearchParams({
       location,
-      type,
+      form,
       equipment: equipment.join(","),
     });
   };
@@ -113,9 +115,9 @@ const SearchBox = () => {
                   className={style.visuallyHidden}
                   id={`type-${idx}`}
                   type="radio"
-                  name="type"
+                  name="form"
                   value={type}
-                  defaultChecked={searchParams.get("type") === type}
+                  defaultChecked={searchParams.get("form") === type}
                 />
                 <label className={style.labelCheckbox} htmlFor={`type-${idx}`}>
                   <svg

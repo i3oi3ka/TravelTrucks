@@ -1,8 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { PER_PAGE } from "../constans/constans";
 
 const initialState = {
+  page: 1,
+  limit: PER_PAGE,
   location: "",
-  type: "",
+  form: "",
   equipment: [],
 };
 const filtersSlice = createSlice({
@@ -12,11 +15,14 @@ const filtersSlice = createSlice({
     changeFilters: (state, { payload }) => {
       return payload;
     },
+    changePage: (state) => {
+      return { ...state, page: state.page + 1 };
+    },
   },
 });
 
 export const filtersReducer = filtersSlice.reducer;
 
-export const { changeFilters } = filtersSlice.actions;
+export const { changeFilters, changePage } = filtersSlice.actions;
 
 export const selectFilters = (state) => state.filters;

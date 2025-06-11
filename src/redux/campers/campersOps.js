@@ -8,6 +8,18 @@ export const fetchCampersThunk = createAsyncThunk(
   async (params = {}, thunkAPI) => {
     try {
       const { data } = await axios("campers", { params });
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchCampersThunkNextPage = createAsyncThunk(
+  "campers/nextPage",
+  async (params = {}, thunkAPI) => {
+    try {
+      const { data } = await axios("campers", { params });
       return data.items;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { PER_PAGE } from "../constans/constans";
+import { PER_PAGE } from "../constants/constants";
 
 const initialState = {
   page: 1,
@@ -13,7 +13,7 @@ const filtersSlice = createSlice({
   initialState,
   reducers: {
     changeFilters: (state, { payload }) => {
-      return payload;
+      return { ...state, ...payload };
     },
     changePage: (state, { payload }) => {
       return { ...state, page: payload };

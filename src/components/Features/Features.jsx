@@ -2,7 +2,7 @@ import { useOutletContext } from "react-router-dom";
 import VehaicleDetails from "../VehicleDetails/VehaicleDetails";
 import Categories from "../Categories/Categories";
 import style from "./Features.module.css";
-import { FORM } from "../../constans/constans";
+import { FORM } from "../../constants/constants";
 import { addSpace } from "../../utils/utils";
 
 const Features = () => {

@@ -18,7 +18,7 @@ export const FORM = {
 
 export const EQUIPMENTS = {
   AC: "AC",
-  automatic: "Automatic",
+  transmission: "Automatic",
   kitchen: "Kitchen",
   TV: "TV",
   bathroom: "Bathroom",

@@ -1,4 +1,4 @@
-import { CATEGORIES } from "../../constans/constans";
+import { CATEGORIES } from "../../constants/constants";
 import { capitalize } from "../../utils/utils";
 import style from "./Categories.module.css";
 
@@ -19,7 +19,7 @@ const Categories = ({ camper }) => {
           height="20"
           viewBox="0 0 20 20"
         >
-          <use href={"/icons.svg#automatic"}></use>
+          <use href={"/icons.svg#transmission"}></use>
         </svg>
         <p>{capitalize(transmission)}</p>
       </li>

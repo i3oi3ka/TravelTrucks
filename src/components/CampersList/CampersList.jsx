@@ -9,7 +9,6 @@ import {
 import Loader from "../Loader/Loader";
 import Camper from "../Camper/Camper";
 import style from "./CampersList.module.css";
-import { PER_PAGE } from "../../constans/constans";
 import { useState } from "react";
 import ImageModal from "../ImageModal/ImageModal";
 
@@ -31,15 +30,13 @@ const CampersList = ({ nextPage }) => {
     setselectedPhoto(null);
   };
 
-  // useEffect(() => {
-  //   setCampersOnPage(PER_PAGE);
-  // }, [campers]);
-
   return (
     <div className={style.container}>
-      {error && <p className={style.message}>{error}</p>}
+      {error && !error.includes("404") && (
+        <p className={style.message}>{error}</p>
+      )}
       {campers.length > 0 ? (
-        <div>
+        <>
           <ul className={style.camperList}>
             {campers.map((camper) => (
               <li key={camper.id} className={style.camperItem}>
@@ -52,11 +49,11 @@ const CampersList = ({ nextPage }) => {
               Load more
             </button>
           )}
-        </div>
+        </>
       ) : (
-        <div>
+        <>
           {!isLoading && <p className={style.message}>No trucks available.</p>}
-        </div>
+        </>
       )}
       {isLoading && <Loader />}
       <ImageModal

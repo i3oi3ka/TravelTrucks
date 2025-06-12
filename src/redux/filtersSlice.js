@@ -6,7 +6,11 @@ const initialState = {
   limit: PER_PAGE,
   location: "",
   form: "",
-  equipment: [],
+  AC: "",
+  transmission: "",
+  kitchen: "",
+  TV: "",
+  bathroom: "",
 };
 const filtersSlice = createSlice({
   name: "filters",

@@ -1,6 +1,5 @@
-import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { fetchCampersThunk, fetchCampersThunkNextPage } from "./campersOps";
-import { selectFilters } from "../filtersSlice";
 
 const handlePending = (state) => {
   state.isLoading = true;
@@ -8,12 +7,15 @@ const handlePending = (state) => {
 };
 
 const handleRejected = (state, { payload }) => {
+  state.items = [];
+  state.total = 0;
   state.isLoading = false;
   state.error = payload;
 };
 
 const initialState = {
   items: [],
+  total: 0,
   isLoading: false,
   error: null,
 };
@@ -21,7 +23,12 @@ const initialState = {
 const campersSlice = createSlice({
   name: "campers",
   initialState,
-  reducers: {},
+  reducers: {
+    clearCampers(state) {
+      state.items = [];
+      state.total = 0;
+    },
+  },
   extraReducers: (builder) =>
     builder
       .addCase(fetchCampersThunk.fulfilled, (state, { payload }) => {
@@ -41,37 +48,11 @@ const campersSlice = createSlice({
       .addCase(fetchCampersThunkNextPage.rejected, handleRejected),
 });
 
+export const { clearCampers } = campersSlice.actions;
+
 export const campersReducer = campersSlice.reducer;
 
 export const selectCampers = (state) => state.campers.items;
-
-export const selectFilteredCampers = createSelector(
-  [selectFilters, selectCampers],
-  ({ location, type, equipment }, campers) => {
-    let filteredCampers = campers;
-
-    if (location) {
-      filteredCampers = filteredCampers.filter((camper) =>
-        camper.location.toLowerCase().includes(location.toLowerCase())
-      );
-    }
-    if (type) {
-      filteredCampers = filteredCampers.filter(
-        (camper) => camper.form === type
-      );
-    }
-    if (equipment) {
-      filteredCampers = filteredCampers.filter((camper) =>
-        equipment.every((equip) =>
-          equip !== "automatic"
-            ? camper[equip]
-            : camper.transmission === "automatic"
-        )
-      );
-    }
-    return filteredCampers;
-  }
-);
 
 export const selectIsLoading = (state) => state.campers.isLoading;
 

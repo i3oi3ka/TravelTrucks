@@ -5,22 +5,25 @@ import { useEffect } from "react";
 
 import style from "./SearchBox.module.css";
 import Divider from "../Divider/Divider";
-import { EQUIPMENTS, PER_PAGE, TYPE } from "../../constans/constans";
+import { EQUIPMENTS, PER_PAGE, TYPE } from "../../constants/constants";
+import { clearCampers } from "../../redux/campers/campersSlice";
 
 const SearchBox = () => {
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
+    dispatch(clearCampers());
     dispatch(
       changeFilters({
         page: 1,
-        limit: PER_PAGE,
         location: searchParams.get("location") || "",
         form: searchParams.get("form") || "",
-        equipment: searchParams.get("equipment")
-          ? searchParams.get("equipment")?.split(",")
-          : [],
+        AC: searchParams.get("AC") || "",
+        transmission: searchParams.get("transmission") || "",
+        kitchen: searchParams.get("kitchen") || "",
+        TV: searchParams.get("TV") || "",
+        bathroom: searchParams.get("bathroom") || "",
       })
     );
   }, [dispatch, searchParams]);
@@ -31,18 +34,14 @@ const SearchBox = () => {
     const location = elements.location.value.trim();
     const form = elements.form.value;
 
-    // Collect all checked equipment checkboxes
-    const equipment = [];
-    Object.keys(EQUIPMENTS).forEach((name) => {
-      if (elements[name] && elements[name].checked) {
-        equipment.push(name);
-      }
-    });
-
     setSearchParams({
       location,
       form,
-      equipment: equipment.join(","),
+      AC: elements.AC.checked ? true : "",
+      transmission: elements.transmission.checked ? "automatic" : "",
+      kitchen: elements.kitchen.checked ? true : "",
+      TV: elements.TV.checked ? true : "",
+      bathroom: elements.bathroom.checked ? true : "",
     });
   };
 
@@ -82,9 +81,7 @@ const SearchBox = () => {
                   className={style.visuallyHidden}
                   type="checkbox"
                   name={equipment}
-                  defaultChecked={searchParams
-                    .get("equipment")
-                    ?.includes(equipment)}
+                  defaultChecked={searchParams.get(equipment)}
                 />
                 <label
                   className={style.labelCheckbox}

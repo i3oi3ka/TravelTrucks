@@ -1,22 +1,21 @@
 import { useDispatch } from "react-redux";
-import { changeFilters } from "../../redux/filtersSlice";
-import { useSearchParams } from "react-router-dom";
-import { useEffect } from "react";
-
 import style from "./SearchBox.module.css";
 import Divider from "../Divider/Divider";
 import { EQUIPMENTS, PER_PAGE, TYPE } from "../../constants/constants";
 import { clearCampers } from "../../redux/campers/campersSlice";
+import { useSearchParams } from "react-router-dom";
+import { changeFilters } from "../../redux/filtersSlice";
+import { useEffect } from "react";
 
 const SearchBox = () => {
-  const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(clearCampers());
-    dispatch(
-      changeFilters({
+    if (searchParams.size !== 0) {
+      const newFilters = {
         page: 1,
+        limit: PER_PAGE,
         location: searchParams.get("location") || "",
         form: searchParams.get("form") || "",
         AC: searchParams.get("AC") || "",
@@ -24,16 +23,17 @@ const SearchBox = () => {
         kitchen: searchParams.get("kitchen") || "",
         TV: searchParams.get("TV") || "",
         bathroom: searchParams.get("bathroom") || "",
-      })
-    );
+      };
+      dispatch(changeFilters(newFilters));
+    }
   }, [dispatch, searchParams]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    dispatch(clearCampers());
     const elements = event.target.elements;
     const location = elements.location.value.trim();
     const form = elements.form.value;
-
     setSearchParams({
       location,
       form,

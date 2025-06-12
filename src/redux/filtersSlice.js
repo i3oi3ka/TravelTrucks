@@ -17,10 +17,10 @@ const filtersSlice = createSlice({
   initialState,
   reducers: {
     changeFilters: (state, { payload }) => {
-      return { ...state, ...payload };
+      return { ...state, ...payload, page: 1 };
     },
-    changePage: (state, { payload }) => {
-      return { ...state, page: payload };
+    changePage: (state) => {
+      return { ...state, page: state.page + 1 };
     },
   },
 });

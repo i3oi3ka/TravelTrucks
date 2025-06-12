@@ -25,7 +25,7 @@ function App() {
           <Route path="reviews" element={<Reviews />} />
           <Route path="" element={<Features />} />
         </Route>
-        <Route path="*" element={<NotFoundPage F />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>
   );

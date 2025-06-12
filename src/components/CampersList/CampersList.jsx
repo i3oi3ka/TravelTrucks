@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 import {
   selectCampers,
   selectError,
-  // selectFilteredCampers,
   selectIsLoading,
   selectTotalCampers,
 } from "../../redux/campers/campersSlice";

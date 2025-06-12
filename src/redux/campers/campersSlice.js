@@ -1,6 +1,5 @@
-import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { fetchCampersThunk } from "./campersOps";
-import { selectFilters } from "../filtersSlice";
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchCampersThunk, fetchCampersThunkNextPage } from "./campersOps";
 
 const handlePending = (state) => {
   state.isLoading = true;
@@ -8,12 +7,15 @@ const handlePending = (state) => {
 };
 
 const handleRejected = (state, { payload }) => {
+  state.items = [];
+  state.total = 0;
   state.isLoading = false;
   state.error = payload;
 };
 
 const initialState = {
   items: [],
+  total: 0,
   isLoading: false,
   error: null,
 };
@@ -21,50 +23,39 @@ const initialState = {
 const campersSlice = createSlice({
   name: "campers",
   initialState,
-  reducers: {},
+  reducers: {
+    clearCampers(state) {
+      state.items = [];
+      state.total = 0;
+    },
+  },
   extraReducers: (builder) =>
     builder
       .addCase(fetchCampersThunk.fulfilled, (state, { payload }) => {
-        state.items = payload;
+        state.items = payload.items;
+        state.total = payload.total;
         state.isLoading = false;
         state.error = null;
       })
       .addCase(fetchCampersThunk.pending, handlePending)
-      .addCase(fetchCampersThunk.rejected, handleRejected),
+      .addCase(fetchCampersThunk.rejected, handleRejected)
+      .addCase(fetchCampersThunkNextPage.fulfilled, (state, { payload }) => {
+        state.items.push(...payload);
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(fetchCampersThunkNextPage.pending, handlePending)
+      .addCase(fetchCampersThunkNextPage.rejected, handleRejected),
 });
+
+export const { clearCampers } = campersSlice.actions;
 
 export const campersReducer = campersSlice.reducer;
 
 export const selectCampers = (state) => state.campers.items;
 
-export const selectFilteredCampers = createSelector(
-  [selectFilters, selectCampers],
-  ({ location, type, equipment }, campers) => {
-    let filteredCampers = campers;
-
-    if (location) {
-      filteredCampers = filteredCampers.filter((camper) =>
-        camper.location.toLowerCase().includes(location.toLowerCase())
-      );
-    }
-    if (type) {
-      filteredCampers = filteredCampers.filter(
-        (camper) => camper.form === type
-      );
-    }
-    if (equipment) {
-      filteredCampers = filteredCampers.filter((camper) =>
-        equipment.every((equip) =>
-          equip !== "automatic"
-            ? camper[equip]
-            : camper.transmission === "automatic"
-        )
-      );
-    }
-    return filteredCampers;
-  }
-);
-
 export const selectIsLoading = (state) => state.campers.isLoading;
 
 export const selectError = (state) => state.campers.error;
+
+export const selectTotalCampers = (state) => state.campers.total;

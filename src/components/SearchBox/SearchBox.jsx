@@ -5,20 +5,25 @@ import { useEffect } from "react";
 
 import style from "./SearchBox.module.css";
 import Divider from "../Divider/Divider";
-import { EQUIPMENTS, TYPE } from "../../constans/constans";
+import { EQUIPMENTS, PER_PAGE, TYPE } from "../../constants/constants";
+import { clearCampers } from "../../redux/campers/campersSlice";
 
 const SearchBox = () => {
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
+    dispatch(clearCampers());
     dispatch(
       changeFilters({
+        page: 1,
         location: searchParams.get("location") || "",
-        type: searchParams.get("type") || "",
-        equipment: searchParams.get("equipment")
-          ? searchParams.get("equipment")?.split(",")
-          : [],
+        form: searchParams.get("form") || "",
+        AC: searchParams.get("AC") || "",
+        transmission: searchParams.get("transmission") || "",
+        kitchen: searchParams.get("kitchen") || "",
+        TV: searchParams.get("TV") || "",
+        bathroom: searchParams.get("bathroom") || "",
       })
     );
   }, [dispatch, searchParams]);
@@ -27,20 +32,16 @@ const SearchBox = () => {
     event.preventDefault();
     const elements = event.target.elements;
     const location = elements.location.value.trim();
-    const type = elements.type.value;
-
-    // Collect all checked equipment checkboxes
-    const equipment = [];
-    Object.keys(EQUIPMENTS).forEach((name) => {
-      if (elements[name] && elements[name].checked) {
-        equipment.push(name);
-      }
-    });
+    const form = elements.form.value;
 
     setSearchParams({
       location,
-      type,
-      equipment: equipment.join(","),
+      form,
+      AC: elements.AC.checked ? true : "",
+      transmission: elements.transmission.checked ? "automatic" : "",
+      kitchen: elements.kitchen.checked ? true : "",
+      TV: elements.TV.checked ? true : "",
+      bathroom: elements.bathroom.checked ? true : "",
     });
   };
 
@@ -80,9 +81,7 @@ const SearchBox = () => {
                   className={style.visuallyHidden}
                   type="checkbox"
                   name={equipment}
-                  defaultChecked={searchParams
-                    .get("equipment")
-                    ?.includes(equipment)}
+                  defaultChecked={searchParams.get(equipment)}
                 />
                 <label
                   className={style.labelCheckbox}
@@ -113,9 +112,9 @@ const SearchBox = () => {
                   className={style.visuallyHidden}
                   id={`type-${idx}`}
                   type="radio"
-                  name="type"
+                  name="form"
                   value={type}
-                  defaultChecked={searchParams.get("type") === type}
+                  defaultChecked={searchParams.get("form") === type}
                 />
                 <label className={style.labelCheckbox} htmlFor={`type-${idx}`}>
                   <svg

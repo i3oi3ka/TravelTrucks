@@ -7,33 +7,43 @@ import {
 import CampersList from "../../components/CampersList/CampersList";
 import SearchBox from "../../components/SearchBox/SearchBox";
 import style from "./CatalogPage.module.css";
-import { changePage, selectFilters } from "../../redux/filtersSlice";
-import { useSearchParams } from "react-router-dom";
+import {
+  changeFilters,
+  changePage,
+  selectFilters,
+} from "../../redux/filtersSlice";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
   const filters = useSelector(selectFilters);
-  const [searchParams, _] = useSearchParams();
+  const [searchParams] = useSearchParams();
+  const location = useLocation();
 
   useEffect(() => {
-    const urlFilters = {};
-    for (const [key, value] of searchParams.entries()) {
-      urlFilters[key] = value;
-    }
+    const newFilters = {
+      page: 1,
+      location: searchParams.get("location") || "",
+      form: searchParams.get("form") || "",
+      AC: searchParams.get("AC") || "",
+      transmission: searchParams.get("transmission") || "",
+      kitchen: searchParams.get("kitchen") || "",
+      TV: searchParams.get("TV") || "",
+      bathroom: searchParams.get("bathroom") || "",
+    };
+    dispatch(changeFilters(newFilters));
+  }, [dispatch, searchParams]);
 
-    // Перетворення типів для порівняння
-    const filtersToCompare = { ...filters };
-    Object.keys(urlFilters).forEach((key) => {
-      if (filtersToCompare[key] === true || filtersToCompare[key] === false) {
-        urlFilters[key] = urlFilters[key] === "true"; // порівняння булевих значень
-      }
-    });
-
-    const areFiltersEqual = Object.keys(urlFilters).every(
-      (key) => filtersToCompare[key] === urlFilters[key]
-    );
-
-    if (searchParams.size !== 0 && !areFiltersEqual) {
+  useEffect(() => {
+    if (
+      searchParams.size !== 0 &&
+      Object.keys(filters).some(
+        (filter) =>
+          filter !== "page" &&
+          filter !== "limit" &&
+          filters[filter] != searchParams.get(filter)
+      )
+    ) {
       return;
     }
 
@@ -50,7 +60,7 @@ const CatalogPage = () => {
 
   return (
     <div className={style.container}>
-      <SearchBox />
+      <SearchBox key={location.key} />
       <CampersList nextPage={nextPage} />
     </div>
   );

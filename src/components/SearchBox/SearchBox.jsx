@@ -4,10 +4,28 @@ import Divider from "../Divider/Divider";
 import { EQUIPMENTS, TYPE } from "../../constants/constants";
 import { clearCampers } from "../../redux/campers/campersSlice";
 import { useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
+import { changeFilters } from "../../redux/filtersSlice";
 
 const SearchBox = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const newFilters = {
+      page: 1,
+      location: searchParams.get("location") || "",
+      form: searchParams.get("form") || "",
+      AC: searchParams.get("AC") || "",
+      transmission: searchParams.get("transmission") || "",
+      kitchen: searchParams.get("kitchen") || "",
+      TV: searchParams.get("TV") || "",
+      bathroom: searchParams.get("bathroom") || "",
+    };
+    dispatch(changeFilters(newFilters));
+    console.log("change filters");
+  }, [dispatch, searchParams]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(clearCampers());

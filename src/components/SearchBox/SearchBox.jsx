@@ -23,7 +23,6 @@ const SearchBox = () => {
       bathroom: searchParams.get("bathroom") || "",
     };
     dispatch(changeFilters(newFilters));
-    console.log("change filters");
   }, [dispatch, searchParams]);
 
   const handleSubmit = (event) => {
